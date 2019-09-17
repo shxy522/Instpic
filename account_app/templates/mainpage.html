@@ -1,0 +1,173 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Instrapic</title>
+    <link rel="stylesheet" type="text/css" href="../static/bulma/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/app.css">
+    <!--<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+
+
+</head>
+
+<body>
+<div id="square">
+    <div class="navbar has-shadow">
+        <div class="container">
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="/" class="navbar-item">Home</a>
+                    <a href="/me" class="navbar-item">My Information</a>
+                    <a href="/showimg" class="navbar-item">Square</a>
+                </div>
+                <div class="navbar-end">
+                    <a href="/login" class="navbar-item">
+                        Login/Register
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <section class="hero index_header_background">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title is-horizontal-center">Instrapic</h1>
+                    <h2 class="subtitle is-horizontal-center">put interest into any picture</h2>
+                </div>
+            </div>
+        </section>
+    </header>
+    <section class="section login_background">
+        <div class="container" id="index">
+            <div class="columns is-centered">
+                <div class="column is-3">
+                    <div class="card">
+                        <div class="card-image img-hide">
+                            <figure class="image is-1by1 is-relative">
+                                <button class="dislike is-absolute"></button>
+                                <a class="like is-absolute">20</a>
+                                <img class="is-absolute img-small" src="../static/images/user_one.jpg"
+                                     alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <a class="title is-4" href="#">Sherry</a>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <p>Cool</p>
+
+                                <time>2018/12/19 15:09</time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-3">
+                     <div class="card">
+                        <div class="card-image img-hide">
+                            <figure class="image is-1by1 is-relative">
+                                <button class="dislike is-absolute"></button>
+                                <a class="like is-absolute">2</a>
+                                <img class="is-absolute img-small" src="../static/images/user_two.jpg"
+                                     alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <a class="title is-4" href="#">Steven</a>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <p>Awesome</p>
+                                <time>2018/12/19 15:09</time>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+                <div class="column is-3">
+                    <div class="card">
+                        <div class="card-image img-hide">
+                            <figure class="image is-1by1 is-relative">
+                                <button class="dislike is-absolute"></button>
+                                <a class="like is-absolute">0</a>
+                                <img class="is-absolute img-small" src="../static/images/user_three.jpg"
+                                     alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <a class="title is-4" href="#">John</a>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <p>Happy Day</p>
+
+                                <time>2018/12/19 15:09</time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-3">
+                     <div class="card">
+                        <div class="card-image img-hide">
+                            <figure class="image is-1by1 is-relative">
+                                <button class="dislike is-absolute"></button>
+                                <a class="like is-absolute">16</a>
+                                <img class="is-absolute img-small" src="../static/images/user_four.jpg"
+                                     alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <a class="title is-4" href="#">Benny</a>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <p>Yeah!</p>
+                                <time>2018/12/19 15:09</time>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer></footer>
+</div>
+</body>
+
+<!-- import Vue before Element -->
+<script src="../static/js/vue.js"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script>
+    new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#square',
+        data() {
+            return {
+                radio:'1',
+                num: 0,
+                imgUrl: '',
+                username: '',
+                userUrl: 'login.html',
+                usericonUrl: '',
+                content: '',
+                time: '',
+                likenumber: '',
+            };
+        },
+        methods: {
+        }
+    })
+</script>
+
+</html>

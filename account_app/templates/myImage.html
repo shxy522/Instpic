@@ -1,0 +1,235 @@
+
+<!doctype html>
+{% load staticfiles %}
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Instrapic</title>
+    <link rel="stylesheet" type="text/css" href="../static/bulma/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/app.css">
+       <!--<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+
+
+</head>
+
+<body>
+<div id="square">
+        <div id="pop" class="popContainer is-hidden">
+            <section class="section is-small">
+                <div class="columns is-gapless is-centered">
+                    <div class="column is-40 is-narrow">
+                        <div class="card">
+                            <div class="card-image img-center img-hide">
+                                <figure class="image is-1by1 is-relative">
+                                    <img id="img-select" class="is-absolute img-big" :src="imgUrl">
+                                </figure>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter is-narrow">
+                        <div class="card height_100">
+                            <div class="card-content height_95">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <a id="username-select" class="title is-4"
+                                           name="username-select">[[username]]</a>
+                                    </div>
+                                    <div class="media-right">
+                                        <button class="delete" @click="closepop();"></button>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h6 name="content-select"><br><br><br>Picture description:</h6>
+                                    <p>[[content]]</p>
+                                    <h6 name="content-select" v-if="likeUsername!=''"><br><br><br>Likes:</h6>
+                                    <p>[[likeUsername]]</p>
+                                </div>
+                            </div>
+                            <div class="card-footer is-horizontal-center">
+                                <time id="time-select" name="time-select">[[time]]</time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    <div class="navbar has-shadow">
+        <div class="container">
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="/" class="navbar-item">Home</a>
+                    <!--<a href="myhome.html" class="navbar-item">My Home</a>-->
+                    <a href="/me" class="navbar-item">My Information</a>
+                    <a href="/showimg" class="navbar-item">Square</a>
+                </div>
+                <div class="navbar-end">
+                    <a href="/me" class="navbar-item">
+                        {{request.user.username}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <section class="hero index_header_background">
+            <div class="hero-body">
+                <div class="container">
+                    <div class="columns">
+                        <div class="column is-3" ></div>
+                        <div class="column is-6">
+                            <h1 class="title is-horizontal-center">
+                                 {{request.user.username}}
+                            </h1>
+                            <h2 class="subtitle is-horizontal-center">
+                                put interest into any picture
+                            </h2>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </header>
+    <section class="section login_background">
+        {% csrf_token %}
+        <div class="container" id="index">
+            {%for img4 in imgcolumns%}
+            <div class="columns is-centered">
+                {%for img in img4%}
+                <div class="column is-3">
+                     <form method="POST" action="">
+                        <div class="card">
+                        <div class="card-image img-hide">
+
+                                <figure class="image is-1by1 is-relative">
+                                     {% if img.click == 1 %}
+                                    <button type="submit" class="like is-absolute" name="likes" @click="likeImgChange(0);"></button>
+                                    {%endif%}
+                                    {% if img.click == 0 %}
+                                    <button type="submit" class="dislike is-absolute" name="likes" @click="likeImgChange(1);"></button>
+                                    {%endif%}
+                                    <a class="likenum is-absolute">{{img.likesnum}}</a>
+                                    <img class="is-absolute img-small" src="{{img.img.url}}" alt="Placeholder image"
+                                         @click="openimg();">
+                                    <!--<button type="submit" class="el-icon-delete deleteImg" value={{request.user.username}} name="delete"></button>-->
+                                    <input type="hidden" name="username" value="{{img.likes}}">
+                                    <input type="hidden" name="name" value="{{img.name}}">
+                                    <input type="hidden" name="username" value="{{request.user.username}}">
+                                </figure>
+
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <a class="title is-4" href="#">{{img.username}}</a>
+                                </div>
+                            </div>
+
+                            <div class="content">
+                                <p>Picture description:</p>
+                                <p>{{img.typename}}</p>
+                                <div class="columns">
+                                    <div class="column is-9">
+                                        <p>{{img.date|date:"Y/m/d H:i"}}</p>
+                                    </div>
+                                    <!--<div class="column is-3">-->
+                                    <!--<el-button type="submit" icon="el-icon-delete" circle-->
+                                    <!--value={{request.user.username}} name="delete"></el-button>-->
+                                    <!--</div>-->
+                                    <div class="column is-1">
+                                        <button class="button is-rounded del" type="submit" value={{request.user.username}}
+                                                name="delete">
+
+                                        </button>
+
+                                        <!--<el-button type="submit" icon="el-icon-delete" value={{request.user.username}}-->
+                                                   <!--name="delete"></el-button>-->
+                                        <!--<button type="submit"  class="el-icon-delete deleteImg" value={{request.user.username}} name="delete"></button>-->
+                                    </div>
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                     </form>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <footer></footer>
+</div>
+</body>
+
+<!-- import Vue before Element -->
+<script src="../static/js/vue.js"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script>
+    new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#square',
+        data() {
+            return {
+                radio:'1',
+                liked: 0,
+                imgUrl: '',
+                username: '',
+                userUrl: '',
+                usericonUrl: '',
+                content: '',
+                time: '',
+                likenumber: '',
+                likeUsername:'',
+            };
+        },
+        methods: {
+            likeImgChange() {
+                var cliked = event.target;
+                var like;
+                var likenum;
+                var num;
+                if (cliked.tagName == "A") {
+                    like = cliked.previousElementSibling;
+                    likenum = cliked;
+                } else {
+                    like = cliked;
+                    likenum = cliked.nextElementSibling;
+                }
+                num = likenum.innerText;
+                if (like.style.display == "block") {
+                    like.style.display = "inline";
+                    like.style.backgroundImage = "url('/static/images/like_red.png')";
+                } else if (like.style.display == "inline") {
+                    like.style.display = "block";
+                    like.style.backgroundImage = "url('/static/images/like_black.png')";
+                } else {
+                    like.style.display = "block";
+                    like.click();
+                    return;
+                }
+                likenum.innerText = num;
+                return true;
+            },
+            openimg() {
+                var cliked = event.target;
+                document.getElementById("pop").setAttribute("class", "popContainer");
+                this.imgUrl = cliked.getAttribute("src");
+                this.username = cliked.parentElement.parentElement.nextElementSibling.childNodes[0].childNodes[0].childNodes[0].innerText;
+                this.content = cliked.parentElement.parentElement.nextElementSibling.childNodes[2].childNodes[2].innerText;
+                this.time = cliked.parentElement.parentElement.nextElementSibling.childNodes[2].childNodes[4].innerText;
+                this.likeUsername=cliked.nextElementSibling.getAttribute("value");
+            },
+            closepop() {
+                document.getElementById("pop").setAttribute("class", "popContainer is-hidden");
+            },
+
+        }
+    })
+</script>
+
+</html>

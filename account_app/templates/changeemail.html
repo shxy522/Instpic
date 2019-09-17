@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Instrapic</title>
+    <link rel="stylesheet" type="text/css" href="../static/bulma/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/app.css">
+
+
+</head>
+
+<body>
+
+    <div class="navbar has-shadow is-size-12">
+        <div class="container">
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                     <a href="/" class="navbar-item">Home</a>
+                    <a href="/me" class="navbar-item">My Information</a>
+                    <a href="/showimg" class="navbar-item">Square</a>
+                </div>
+                <div class="navbar-end">
+                    <a href="/me" class="navbar-item">
+                        {{request.user.username}}
+                    </a>
+                    <!-- <a href="#" class="navbar-item">
+                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="">
+                    </a> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>
+<section class="hero index_header_background">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-horizontal-center">E-mail Modification</h1>
+            </div>
+        </div>
+    </section>
+    </header>
+    <div class="columns is-centered">
+    <div class="column is-one-fifth">    </div>
+        <div class="column is-2">
+            <aside class="menu">
+                <p class="menu-label">Profile</p>
+                <ul class="menu-list">
+                    <li><a href="/me">· Personal Info</a></li>
+                </ul>
+                <p class="menu-label">Modification</p>
+                <ul class="menu-list">
+                    <li><a href="/changePassword">· Password Modification</a></li>
+                    <li><a href="/changeemail">· E-mail Modification</a></li>
+                    <li><a href="/uploadimg">· Upload Image</a></li>
+                     <li><a href="/myimg">· My Images</a></li>
+                </ul>
+                <p class="menu-label">
+                    Log out
+                </p>
+                <ul class="menu-list">
+                    <li><a href="/logout">· Log out</a></li>
+
+                </ul>
+            </aside>
+        </div>
+                <div class="column">
+                <div class="container" id="login-register">
+            <div class="column is-5 is-offset-3">
+
+
+                <form id="form_email" action="#" method="POST">
+					 {% csrf_token %}
+                    <div class="box is-4">
+                        <header class="title is-horizontal-center">
+                            <p class="title">Email Modification</p>
+                        </header>
+	                    <span>Original Email : {{ email }}</span><br><br>
+						 {% if errormsg %}
+                            <div class="box" id="form_error">{{ errormsg }}</div>
+						 {% endif %}
+                        <p class="modified_add">Modified Address :</p>
+                        <input class="input  is-parent" type="email" placeholder="new address" name="email">
+                        <br><br>
+                        <input type="submit" class="button is-info width_100" value="Modify" name="Edit">
+
+                        <div class="column is-horizontal-center">
+                            <a href="/changePassword">password modification</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+        
+        
+        </div>
+    </div>
+        </div>
+    </section>
+</body>
+
+</html>

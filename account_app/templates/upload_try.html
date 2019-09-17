@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Instrapic</title>
+    <link rel="stylesheet" type="text/css" href="../static/bulma/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/app.css">
+
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+
+<div class="navbar has-shadow is-size-12">
+    <div class="container">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                 <a href="/" class="navbar-item">Home</a>
+                    <a href="/me" class="navbar-item">My Information</a>
+                    <a href="/showimg" class="navbar-item">Square</a>
+            </div>
+            <div class="navbar-end">
+                <a href="/me" class="navbar-item">
+                    {{request.user.username}}
+                </a>
+                <!-- <a href="#" class="navbar-item">
+                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="">
+                </a> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+<header>
+
+
+    <section class="hero index_header_background">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-horizontal-center">Upload Images</h1>
+            </div>
+        </div>
+    </section>
+</header>
+<div class="columns is-centered">
+    <div class="column is-one-fifth"></div>
+    <div class="column is-2">
+        <aside class="menu">
+            <p class="menu-label">Profile</p>
+            <ul class="menu-list">
+                <li><a href="/me">· Personal Info</a></li>
+            </ul>
+            <p class="menu-label">Modification</p>
+            <ul class="menu-list">
+                <li><a href="/changePassword">· Password Modification</a></li>
+                <li><a href="/changeemail">· E-mail Modification</a></li>
+                <li><a href="/uploadimg">· Upload Image</a></li>
+                <li><a href="/myimg">· My Images</a></li>
+            </ul>
+            <p class="menu-label">
+                Log out
+            </p>
+            <ul class="menu-list">
+                <li><a href="/logout">· Log out</a></li>
+
+            </ul>
+        </aside>
+    </div>
+    <div class="column">
+        <div class="container" id="login-register">
+            <div class="column is-5 is-offset-3">
+                <div class="box is-4">
+                    <p id="errormsg"></p >
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if success %}
+                        <div class="box">{{ success }}</div>
+                        {% endif %}
+                        <input type="file" name="img" id="file" onchange="c()">
+                        <br/><br/>
+                        <img src="" id="show" width="200px">
+                        <br/><br/>
+                        <label><input checked name="select" type="radio" value="1"/>Original Image </label>
+                        <label><input name="select" type="radio" value="2"/>Gray Image </label>
+                        <label><input name="select" type="radio" value="3"/>Enhance Image </label>
+                        <br/><br/>
+                        <label><input name="select" type="radio" value="4"/>Emoboss Image </label>
+                        <label><input name="select" type="radio" value="5"/>Contour Image </label>
+                        <label><input name="select" type="radio" value="6"/>GaussianBlur Image</label>
+                        <br/><br/>
+                        <button class="button" type="submit" id="upload" disabled="disabled">Upload</button>
+                    </form>
+                </div>
+                <script>
+                     function c() {
+                        document.getElementById("errormsg").style.display="none";
+                        var r = new FileReader();
+
+                        var filename0 = document.getElementById('file');
+                        var filename = filename0.value.toString();
+
+                        var f = document.getElementById('file').files[0];
+                        var idx = filename.lastIndexOf(".");
+                        if (idx != -1) {
+                            var ext = filename.substr(idx + 1).toUpperCase();
+                            ext = ext.toLowerCase();
+
+                            if (ext != 'jpg'  && ext != 'jpeg' && ext != 'gif' && ext != 'bmp' && ext != 'png') {
+                                document.getElementById("errormsg").innerHTML = "invalid image format";
+                                document.getElementById("errormsg").style.display="block";
+                                var tempfilename = document.getElementById('file');
+                                tempfilename.value = "";
+                                return false;
+                            }
+                            else {
+                                r.readAsDataURL(f);
+                                r.onload = function (e) {
+                                    document.getElementById('show').src = this.result;
+                                    document.getElementById('upload').disabled = false;
+                                };
+                                return true;
+                            }
+                        }
+                    }
+                </script>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</section>
+</body>
+
+</html>

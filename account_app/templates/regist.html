@@ -1,0 +1,80 @@
+<!doctype html>
+{% load static %}
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Instrapic</title>
+    <link rel="stylesheet" type="text/css" href="../static/bulma/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/app.css">
+
+    <script src="../static/js/judge.js"></script>
+</head>
+
+<body>
+
+    <div class="navbar has-shadow">
+        <div class="container">
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                     <a href="/" class="navbar-item">Home</a>
+                    <a href="/me" class="navbar-item">My Information</a>
+                    <a href="/showimg" class="navbar-item">Square</a>
+                </div>
+                <div class="navbar-end">
+                    <a href="/me" class="navbar-item">
+                        Login/Register
+                    </a>
+                    <!-- <a href="#" class="navbar-item">
+                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="">
+                    </a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>
+
+    </header>
+    <section class="section is-medium register_background">
+        <div class="container" id="login-register">
+            <div class="column is-4 is-offset-4">
+                <form id="form_register" method="POST" action="" enctype="multipart/form-data" onsubmit="return myregister()">
+                {% csrf_token %}
+                <div class="box is-4">
+
+                    <header class="title is-horizontal-center">
+                    <p class="title">Register</p >
+                    </header>
+                    <p id="errormsg"></p >
+                    {% if errormsg %}
+                    <div class="box" id="form_error">{{ errormsg }}</div>
+                    {% endif %}
+                    {% if error %}
+                    <div class="box" id="form_error1">
+                        <!--{{ error }}-->
+                        {{ error.email }}
+                        {{ error.username }}
+                        {{ error.password2 }}
+                    </div>
+                    {% endif %}
+                         <!--<div class="box" id="errormsg"></div>-->
+                    <input class="input is-parent" type="text" id="id_email" placeholder="Email address" name="email">
+                    <br><br>
+                    <input class="input is-parent" type="text" id="id_username" placeholder="Username" name="username">
+                    <br><br>
+                    <input class="input is-parent" type="Password" id="id_password1" placeholder="Password" name="password1">
+                    <br><br>
+                    <input class="input is-parent" type="Password" id="id_password2" placeholder="Password confirm" name="password2">
+                    <br><br>
+                    <input type="submit" class="button is-info width_100" value="Register" name="register">
+                    <div class="column is-horizontal-center">
+                    <a href="/login">Already have account? Login</a>
+                    </div>
+                    </div>
+                    </form>
+                    </div>
+                </div>
+        </section>
+</body>
+
+</html>

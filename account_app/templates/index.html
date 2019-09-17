@@ -1,0 +1,70 @@
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Instrapic</title>
+    <link rel="stylesheet" type="text/css" href="../static/bulma/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/app.css">
+    <script src="../static/js/judge.js"></script>
+</head>
+
+<body>
+
+    <div class="navbar has-shadow">
+        <div class="container">
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="/" class="navbar-item">Home</a>
+                    <!--<a href="myhome.html" class="navbar-item">My Home</a>-->
+                    <a href="/me" class="navbar-item">My Information</a>
+                    <a href="/showimg" class="navbar-item">Square</a>
+                </div>
+                <div class="navbar-end">
+                    <a href="/login" class="navbar-item">
+                        Login/Register
+                    </a>
+                    <!-- <a href="#" class="navbar-item">
+                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="">
+                    </a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>
+
+    </header>
+    <section class="section is-medium login_background">
+        <div class="container" id="login-register">
+            <div class="column is-4 is-offset-4">
+                <!--<form id="form_login" method="POST" action="" enctype="multipart/form-data" onsubmit="">-->
+				<form method="POST" action="" enctype="multipart/form-data" onsubmit="return mylogin()">
+                    {% csrf_token %}
+                    <div class="box is-4">
+
+                        <header class="title is-horizontal-center">
+                            <p class="title">Login</p>
+                        </header>
+                         <p id="errormsg"></p >
+                        {% if errormsg %}
+                            <div class="box" id="form_error">{{ errormsg }}</div>
+                        {% endif %}
+                        <input class="input  is-parent" type="text" placeholder="Email/Username" name="email">
+                        <br><br>
+                        <input class="input  is-parent" type="Password" placeholder="Password" name="password" id="id_password">
+                        <br><br>
+                        <input type="submit" class="button is-info width_100" value="Login" name="login">
+                        <div class="column is-horizontal-center">
+                            <a href="/register">Don't have account? Register</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+         <!-- Hero footer: will stick at the bottom -->
+
+</body>
+
+</html>

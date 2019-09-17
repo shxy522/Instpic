@@ -1,0 +1,45 @@
+.is-horizontal-center{
+    display: flex;
+    justify-content: center; /* 让子元素水平居中 */
+}
+/*#form_register{*/
+    /*display:none;*/
+/*}*/
+.width_100{
+    width: 100%;
+}
+#form_error{
+    color:red;
+    border:5px solid red;
+    /*width: 300px;*/
+    height: 20px;
+    font-size: 15px;
+    line-height: 20px;
+}
+.login_background{
+    background-image:url(/static/images/login.jpg);
+    background-position-x: center;
+    background-position-y: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.register_background{
+    background-image:url(/static/images/register.jpg);
+    background-position-x: center;
+    background-position-y: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#form_profile{
+display:none;
+}
+#form_email{
+display:none;
+}
+#form_password{
+display:block;
+}
+#errormsg{
+    display:"none";
+}

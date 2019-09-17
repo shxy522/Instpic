@@ -1,0 +1,164 @@
+.is-horizontal-center{
+    display: flex;
+    justify-content: center; /* 让子元素水平居中 */
+}
+/*#form_register{*/
+    /*display:none;*/
+/*}*/
+.width_100{
+    width: 100%;
+}
+.height_100{
+    height: 100%;
+}
+.height_95{
+    height: 95%;
+}
+#form_error{
+    color:red;
+    border:5px solid red;
+    /*width: 300px;*/
+    height: 20px;
+    font-size: 15px;
+    line-height: 20px;
+}
+.login_background{
+    background-image:url(/static/images/login.jpg);
+    background-position-x: center;
+    background-position-y: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.register_background{
+    background-image:url(/static/images/register.jpg);
+    background-position-x: center;
+    background-position-y: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#errormsg{
+    display: none;
+}
+button.like{
+    background-image: url(/static/images/like_red.png);
+    width:32px !important;
+    height:32px !important;
+    border: 0;
+    border-radius: 50%;
+    z-index:1;
+    bottom: 10px;
+    left:10px;
+    display: block;
+}
+
+.is-relative{
+    position: relative !important;
+}
+
+.is-absolute{
+    position: absolute !important;
+}
+
+a.likenum{
+    left:45px;
+    bottom: 13px;
+    z-index:1;
+}
+
+button.dislike{
+    background-image: url(/static/images/like_black.png);
+    width:32px !important;
+    height:32px !important;
+    border: 0;
+    border-radius: 50%;
+    z-index:1;
+    bottom: 10px;
+    left:10px;
+    display: block;
+}
+
+a.dislike{
+    right:45px;
+    bottom: 13px;
+    z-index:1;
+}
+
+div.popContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index:5;
+}
+
+
+.column.is-40, .column.is-40-tablet {
+    flex: none;
+    width: 40%;
+}
+
+.no-margin{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.margin_10{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#left{
+    background-image: url(/static/images/left.png);
+    background-position-x: center;
+    background-position-y: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+}
+#right{
+    background-image: url(/static/images/right.png);
+    background-position-x: center;
+    background-position-y: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px
+}
+
+div.dark{
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index:5;
+}
+
+.img-hide{
+    overflow: hidden;
+    text-align:center;
+}
+
+.img-center{
+    text-align:center;
+}
+
+.img-small{
+    margin:auto;
+    width: auto !important;
+    height: auto !important;
+}
+
+.img-big{
+    margin:auto;
+    width: auto !important;
+    height: auto !important;
+}
+
+button.del{
+    background-image: url(/static/images/bin.png);
+    background-position-x: center;
+    background-position-y: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
